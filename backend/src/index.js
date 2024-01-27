@@ -8,6 +8,7 @@ const apiKey = process.env.API_KEY;
 const chatGPTClient = new ChatGPTAPIClient(apiKey);
 
 const app = express();
+app.use(express.json());
 const port = process.env.PORT || 3000;
 
 app.get("/email", (req, res) => {
