@@ -12,8 +12,6 @@ app.use(express.json());
 const port = process.env.PORT || 3000;
 
 app.post("/email", (req, res) => {
-  const messages = req.body.messages;
-
   const message = {
     model: "gpt-4-turbo-preview",
     messages: [
