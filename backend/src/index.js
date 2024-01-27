@@ -27,6 +27,17 @@ app.post("/email", (req, res) => {
     ],
   };
 
+  // const req = {
+  //   method: "POST",
+  //   headers: {
+  //     "Content-Type": "application/json",
+  //     Authorization: `Bearer YOUR_OPENAI_API_KEY`
+  //   },
+  //   body: JSON.stringify({
+  //     prompt: req.message, // the text of the email
+  //     max_tokens: 150
+  //   })
+
   chatGPTClient
     .sendChatMessage(message)
     .then((response) => res.json({ response }))
