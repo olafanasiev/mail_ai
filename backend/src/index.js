@@ -11,20 +11,32 @@ const app = express();
 app.use(express.json());
 const port = process.env.PORT || 3000;
 
-app.get("/email", (req, res) => {
+app.post("/email", (req, res) => {
   const messages = req.body.messages;
 
-  // [
-  //   { role: "user", content: "Dummy Content for User." },
-  //   {
-  //     role: "assistant",
-  //     content: "Dummy content for assistant!",
-  //   },
-  //   { role: "user", content: "Dummy content for user 2." },
-  // ];
+  const message = {
+    model: "gpt-4-turbo-preview",
+    messages: [
+      {
+        role: "system",
+        content:
+          "You are an email auto-completion bot.  Help complete the the email with a short 1 or 2 paragraph suggestion.  use markdown",
+      },
+      {
+        role: "user",
+        content: req.body.message,
+      },
+    ],
+    temperature: 1,
+    max_tokens: 256,
+    top_p: 1,
+    frequency_penalty: 0,
+    presence_penalty: 0,
+    stop: ["I'm sorry", "I apologize", "I'm really sorry"],
+  };
 
   chatGPTClient
-    .sendChatMessage(messages)
+    .sendChatMessage(message)
     .then((response) => res.json({ response }))
     .catch((error) => res.status(500).json({ Error: error.message }));
 });

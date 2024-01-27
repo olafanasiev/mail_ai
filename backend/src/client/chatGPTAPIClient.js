@@ -6,26 +6,14 @@ class ChatGPTAPIClient {
     this.apiEndpoint = "https://api.openai.com/v1/chat/completions";
   }
 
-  async sendChatMessage(messages) {
+  async sendChatMessage(message) {
     try {
-      const response = await axios.post(
-        this.apiEndpoint,
-        {
-          messages: [
-            {
-              role: "system",
-              content: "You are a Email assistant.",
-            },
-            ...messages,
-          ],
+      const response = await axios.post(this.apiEndpoint, message, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${this.apiKey}`,
         },
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${this.apiKey}`,
-          },
-        }
-      );
+      });
 
       return response.data.choices[0].message.content;
     } catch (error) {
