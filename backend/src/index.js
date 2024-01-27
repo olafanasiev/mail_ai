@@ -25,12 +25,6 @@ app.post("/email", (req, res) => {
         content: req.body.message,
       },
     ],
-    temperature: 1,
-    max_tokens: 256,
-    top_p: 1,
-    frequency_penalty: 0,
-    presence_penalty: 0,
-    stop: ["I'm sorry", "I apologize", "I'm really sorry"],
   };
 
   chatGPTClient
