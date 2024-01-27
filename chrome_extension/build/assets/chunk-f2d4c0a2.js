@@ -1,0 +1,1 @@
+const t=e=>{const s=Array.from(e.target.childNodes),o=s.findIndex(a=>a.nodeType===3),d=s[o],n="Hello world !";setTimeout(()=>{d.data=n},2e3)};setTimeout(()=>{document.querySelectorAll('[aria-label="Message Body"]').item(1).addEventListener("input",t)},4e3);window.onbeforeunload=()=>{messageBdy&&messageBdy.removeEventListener("input",t)};
