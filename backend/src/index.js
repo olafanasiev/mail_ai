@@ -12,6 +12,7 @@ app.use(express.json());
 const port = process.env.PORT || 3000;
 
 app.post("/email", (req, res) => {
+  console.log("client request : :: ", req.body);
   const message = {
     model: "gpt-4-turbo-preview",
     messages: [
@@ -40,7 +41,10 @@ app.post("/email", (req, res) => {
 
   chatGPTClient
     .sendChatMessage(message)
-    .then((response) => res.json({ response }))
+    .then((response) => {
+      console.log(response);
+      res.json({ response });
+    })
     .catch((error) => res.status(500).json({ Error: error.message }));
 });
 

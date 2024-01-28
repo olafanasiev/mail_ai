@@ -22,7 +22,7 @@ const uiEnchantMessage = (ev) => {
   const promptText = messageBdyNode.data;
 
   chrome.runtime.sendMessage(promptText, (response) => {
-    console.log("response :::: ", response);
+    messageBdyNode.data = response;
   });
 };
 

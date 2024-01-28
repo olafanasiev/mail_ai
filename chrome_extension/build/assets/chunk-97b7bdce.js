@@ -1,0 +1,1 @@
+console.log("background is running");chrome.runtime.onMessage.addListener((e,t,n)=>(fetch("http://localhost:3000/email",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({message:e})}).then(o=>{o.json().then(s=>{n(s.response)})}),!0));
